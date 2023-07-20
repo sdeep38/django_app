@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+Edit
+{% endblock title %}
+
+{% block body %}
+<div class="main container mt-3">
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="text-center">Edit Users</h1><br>
+            <form method="POST" action="/update/{{user.id}}">
+                <input type="hidden" name="id" id="id" value="{{user.id}}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{user.email}}">
+                </div><br>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
+                </div><br>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{user.phn}}">
+                </div><br>
+                <div class="form-group">
+                    <label for="desc">Message:</label>
+                    <textarea class="form-control" id="desc" name="desc" rows="3" cols="4"
+                        value="{{user.desc}}"></textarea>
+                </div><br>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,438 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome {{request.user}}
+{% endblock title %}
+
+{% block style %}
+<style>
+    .profile-details {
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        background: none;
+    }
+
+    .profile-details .text-title {
+        background: none;
+        padding: 1.25rem;
+        color: #04078b;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 1px;
+        border: none;
+    }
+
+    .profile-details .box-profile {
+        border: none;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0px 0px 12px rgb(0 0 0 / 29%);
+    }
+
+    .profile-details .box-profile .table-responsive {
+        padding: 0;
+    }
+
+    .card-profile .useful-links {
+        padding: 0;
+    }
+
+    .card-profile .useful-links h3 {
+        color: #04078b;
+        font-size: 14px;
+    }
+
+    .card-profile .useful-links h3:hover {
+        text-decoration: none;
+    }
+
+    .useful-links ul {
+        background-color: #ccfcff;
+    }
+
+    .useful-links ul li {
+        padding: 10px;
+    }
+
+    .useful-links ul li a {
+        color: #00c0ef;
+        letter-spacing: 0;
+    }
+
+    .useful-links ul li a span {
+        font-size: 14px;
+    }
+
+    .useful-links ul li a:hover {
+        padding-left: 4px;
+        color: #020341;
+    }
+
+    .b-0 {
+        border: 0;
+    }
+
+    td a.email {
+        letter-spacing: 0;
+        font-size: 14px;
+        color: #04078b;
+    }
+
+    td span.edit-btn {
+        color: #04078b;
+        float: right;
+        padding-right: 5px;
+        font-size: 14px;
+        padding-top: 5px;
+    }
+
+    li span {
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    #feetable th {
+        font-size: 13px;
+        letter-spacing: 0;
+        font-weight: 600;
+    }
+
+    #feetable tbody {
+        font-size: 13px;
+        color: #010236;
+    }
+
+    #feetable tbody tr {
+        line-height: 40px;
+    }
+
+    #feetable tbody .paid {
+        background-color: #c6f8d7;
+        /*#c6e2f8*/
+    }
+
+    #feetable tbody .paid .feepaid {
+        background: #0aaa47 !important;
+        color: #fff;
+        font-size: 12px;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+
+    #feetable tbody .feepartial {
+        color: #fff;
+        font-size: 12px;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+
+    #feetable tbody .feeunpaid {
+        color: #020341;
+        font-size: 14px;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+
+    #feetable tbody a {
+        letter-spacing: 0;
+    }
+
+    #feetable tbody a.payfees {
+        color: #00c0ef;
+        font-size: 14px;
+        border-radius: 4px;
+        font-weight: 600;
+        background: none !important;
+        border: 1px solid #00c0ef;
+    }
+
+    #feetable tbody a.payfees:hover {
+        color: #fff;
+        background-color: #00c0ef !important;
+    }
+
+    #feetable tbody a.payfees:focus {
+        color: #fff;
+        background-color: #010236 !important;
+        border-color: #010236;
+    }
+
+    #feetable tbody .partial {
+        background-color: #ecfca7;
+        /*#c6e2f8*/
+    }
+
+    .fees-table .forgot {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+    .fees-table .forgot:hover {
+        text-decoration: none;
+    }
+
+    .modal-body #feetable {
+        border: 1px solid #010236;
+        margin-bottom: 0;
+        width: 474px;
+    }
+
+    .modal-body #feetable tr {
+        line-height: 20px;
+    }
+
+    .modal-body .paidfee tr td {
+        border: 1px solid #010236;
+        padding: 0.25rem;
+        font-size: 14px;
+        text-align: left;
+        color: #0aaa47;
+    }
+
+    .modal-body tr td {
+        border: 1px solid #010236;
+        padding: 0.25rem;
+        font-size: 14px;
+        text-align: left;
+        color: #f68000;
+        line-height: 30px;
+    }
+
+    .modal-body #feetable tr .th {
+        font-weight: 600;
+    }
+
+    #feetable tbody a.prinvc {
+        color: #0aaa47;
+        font-size: 16px;
+    }
+
+    #feetable tbody a.paypartial {
+        color: #f68000;
+        border: 1px solid #ffc107;
+        background: none;
+        padding: 4px;
+        border-radius: 10%;
+    }
+
+    #feetable tbody a.paypartial:hover {
+        color: #fff;
+        border: 1px solid #ffc107;
+        background: #ffc107;
+    }
+
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="main container mt-3">
+    <div class="row mb-5">
+        <div class="col-md-3">
+            <div class="card card-body sub-card">
+                <div class="card-profile">
+
+                    <h3 class="profile-username text-center"></h3>
+                    <ul class="list-group list-group-unbordered">
+
+                        <li class="list-group-item">
+                            <span>Admission No.</span> <a class="pull-right text-aqua">4202</a>
+                        </li>
+
+                    </ul>
+                    <div class="profile-footer useful-links">
+                        <!--<h3 class="forgot my-0">Useful Links</h3>-->
+                        <ul style="list-style: none; padding-left: 5px; margin: 0;">
+                            <li><a href="#"><span class="fa fa-file-pdf"></span> Fee Structure</a></li>
+                            <li><a href="#"><span class="fa fa-edit"></span> Fee Passbook</a></li>
+                            <!--<li><a href="#"><span class="fa fa-file-invoice"></span> 
+                                Fee Pay Invoice</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body sub-card profile-details">
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">
+                        <span class="blue-bg"><i class="fa fa-rupee-sign f12"></i> Fees</span>
+                    </h3>
+                    <div class="fees-table">
+                        <div class="table-responsive">
+                            <table class="table" id="feetable">
+                                <thead>
+                                    <tr>
+                                        <th>Fees Code</th>
+                                        <th>Amount(₹)</th>
+                                        <th>Due Date</th>
+                                        <th>Payment Id</th>
+                                        <th>Mode</th>
+                                        <th>Paid(₹)</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr class="paid">
+                                        <td>F005</td>
+                                        <td>5000</td>
+                                        <td>25.02.2021</td>
+                                        <td>CPAB9600</td>
+                                        <td>Cash</td>
+                                        <td>5000</td>
+                                        <td>22.02.2021</td>
+                                        <td>
+                                            <a class="badge rounded-pill bg-success feepaid">Paid</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="prinvc"><span class="fa fa-download"></span></a>
+                                        </td>
+                                    </tr>
+                                    <tr class="partial">
+                                        <td>F006</td>
+                                        <td>5000</td>
+                                        <td>25.02.2021</td>
+                                        <td>CPAB9600</td>
+                                        <td>Cash</td>
+                                        <td>3000</td>
+                                        <td>22.02.2021</td>
+                                        <td>
+                                            <a class="badge rounded-pill bg-warning feepartial">Partial</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="paypartial" data-bs-toggle="modal"
+                                                data-bs-target="#feeModal">Pay</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>F007</td>
+                                        <td>5000</td>
+                                        <td>25.02.2021</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>
+                                            <a class="badge rounded-pill feeunpaid">Unpaid</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="badge bg-warning payfees">Pay</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">Account Details</h3>
+                    <div class="table-responsive around-10">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="td-title mb-2">Email-Address</td>
+                                    <td>sample@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title mb-2">Aadhar No.</td>
+                                    <td>xxxxxx898</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">Address Details</h3>
+                    <div class="table-responsive around-10">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="td-title mb-2">Area/Locality</td>
+                                    <td>NewTown</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title mb-2">State</td>
+                                    <td>Sikkim</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title mb-2"></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- feepay modal-->
+
+<div class="modal fade" id="feeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!--<div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Logout Confirmation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>-->
+            <div class="modal-body">
+                <table class="table table-bordered" id="feetable">
+                    <tr>
+                        <td class="th">Admission No.</th>
+                        <td>4202</td>
+                    </tr>
+                    <tr>
+                        <td class="th">Fees Code</th>
+                        <td>F006</td>
+                    </tr>
+                    <tr>
+                        <td class="th">Amount</td>
+                        <td>5000</td>
+                    </tr>
+                    <tr>
+                        <td class="th">Status</td>
+                        <td>Partial</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <!--<a href="" class="btn btn-sm prinvc"><span class="fa fa-file-invoice"></span> Print Invoice</a>-->
+                <a href="/payfees" target="blank" class="btn btn-sm btn-alt">Proceed ></a>
+                <a href="#" class="btn btn-sm" data-bs-dismiss="modal">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end modal-->
+
+<script>
+    document.getElementById('floating').innerHTML = 'Fee Payment portal will be live soon !!';
+    document.getElementById('floating').style.color = 'red';
+
+    $(document).ready(function () {
+        $(".feepaid").on('click', function () {
+            $('.modal-body .table').addClass('paidfee');
+            $('.modal-footer .btn-alt').text('Print Invoice');
+            $('.modal-footer .btn-alt').addClass('prinvc');
+        });
+    });
+
+    $(document).ready(function () {
+        $(".feepartial").on('click', function () {
+            $('.modal-body .table').addClass('partialfee');
+            $('.modal-footer .btn-alt').text('Pay');
+            $('.modal-footer .btn-alt').addClass('paypartial');
+        });
+    });
+
+</script>
+{% endblock body %}

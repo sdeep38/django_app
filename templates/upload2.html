@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block style %}
+<style>
+    .profile-details {
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        background: none;
+    }
+
+    .profile-details .text-title {
+        background: none;
+        padding: 1.25rem;
+        color: #04078b;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 1px;
+        border: none;
+    }
+
+    .profile-details .box-profile {
+        border: none;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0px 0px 12px rgb(0 0 0 / 29%);
+    }
+
+    .profile-details .box-profile .table-responsive {
+        padding: 0;
+    }
+
+    .card-profile .profile-footer a {
+        font-size: 14px;
+    }
+
+    .b-0 {
+        border: 0;
+    }
+
+    td a.email {
+        letter-spacing: 0;
+        font-size: 14px;
+        color: #04078b;
+    }
+
+    td span.edit-btn {
+        color: #04078b;
+        float: right;
+        padding-right: 5px;
+        font-size: 14px;
+        padding-top: 5px;
+    }
+
+    li span {
+        font-weight: 600;
+    }
+
+    .text-title span {
+        background: #cfd0ff;
+        padding: 5px 10px;
+        border-radius: 30px;
+    }
+
+    .box-profile label {
+        padding-left: 0;
+        letter-spacing: 0;
+    }
+
+    .card-profile .i-text {
+        color: #888;
+        padding-bottom: 0;
+    }
+
+    .box-profile form .alert {
+        padding: 0.375rem 0.75rem;
+        line-height: 1.5;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="main container mt-3">
+    <div class="row mb-5">
+        <div class="col-md-3">
+            <div class="card card-body sub-card">
+                <div class="card-profile">
+                    <img class="profile-user-img img-responsive img-circle mb-2"
+                        src="/static/customer/images/no_image.png" alt="User">
+                    <h3 class="profile-username text-center"></h3>
+                    <ul class="list-group list-group-unbordered">
+
+                        <li class="list-group-item">
+                            <span><a href="#">Uploaded*</a></span> <a class="pull-right text-aqua">0</a>
+                        </li>
+                    </ul>
+                    <p class="forgot i-text my-0">* till <em>Nov 16, 2021</em></p>
+                    <!--
+                    <div class="profile-footer">
+                        <a href="#" class="btn btn-info btn-custom btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Logout</a>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body sub-card profile-details">
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">
+                        <span class="blue-bg">Upload My Work</span>
+                    </h3>
+                    <form action="" method="post" enctype="multipart/form-data" style="padding:1.25rem">
+                        {% csrf_token %}
+
+                        <div class="form-group has-feedback">
+                            <label for="upload">Classroom:</label>
+                            <select name="classroom" id="classroom">
+                                <option value="none">Select Classroom</option>
+                                <option value="class1">Class 1</option>
+                                <option value="class1">Class 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="upload">File:</label>
+                            <input type="file" name="myfile" id="upload">
+                        </div><br>
+                        <button type="submit" class="btn btn-success">Upload</button>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <span class="alert alert-{{message.tags}}" role="alert">
+                            {{message}}
+                        </span>
+                        {% endfor %}
+                        {% endif %}
+                    </form>
+                </div>
+                <!--
+                    
+                        
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">Account Details</h3>
+                    <div class="table-responsive around-10">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="td-title mb-2">Email-Address</td>
+                                    <td>sample@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title mb-2">Aadhar No.</td>
+                                    <td>xxxxxx898</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">Address Details</h3>
+                    <div class="table-responsive around-10">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="td-title mb-2">Area/Locality</td>
+                                    <td>NewTown</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title mb-2">State</td>
+                                    <td>Sikkim</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title mb-2"></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

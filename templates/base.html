@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!--
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  -->
+  <!--
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+    integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+-->
+  <title>Student : {% block title %}{% endblock title %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{%static 'customer/css/main.css'%}" type="text/css">
+  <!-- <link rel="stylesheet" href="{%static 'customer/css/footer.css'%}" type="text/css"> -->
+  {% block style %}{% endblock style %}
+  <style>
+    body.modal-open {
+      padding-right: 0 !important;
+    }
+
+    a,
+    .nav-link {
+      text-decoration: none;
+      transition: all 1s ease 0s;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+
+    .header-links a {
+      color: #fff !important;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+    }
+
+    .dropdown-toggle::after {
+      content: none;
+    }
+
+    .submenu {
+      padding: 0;
+    }
+
+    .submenu li {
+      border-bottom: 1px solid #ddd;
+    }
+
+    .submenu li a {
+      color: darkblue;
+
+    }
+
+    .submenu li a:hover {
+      color: cyan;
+      padding-left: 5px;
+    }
+
+    /*
+    .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .sticky + #content{
+      padding-top: 150px;
+    }
+*/
+
+    a.notify-me {
+      position: relative;
+      font-size: 13px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+    }
+
+    .notify-me .has-badge{
+      position: absolute;
+      top: -3px;
+      right: 1px;
+      background: red;
+      border-radius: 50%;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .top-right li .notify-me:hover {
+      background: none;
+      color: darkblue !important;
+    }
+
+    .dropdown:hover .notice {
+      display: block;
+    }
+
+    .search-form {
+      border-radius: 10px;
+      border: none;
+    }
+
+    .top-right li a.notify-me {
+      padding-right: 0em;
+    }
+
+    .top-right .header-links li {
+      margin: 0;
+    }
+
+    .top-right .header-links li a {
+      text-transform: uppercase;
+      font-size: 12px;
+      color: #02151b !important;
+      font-weight: 600;
+      transition: none;
+    }
+
+    .top-right .header-links li a:hover {
+      color: #0b5fbe !important;
+    }
+
+    .top-right .header-links li a.logged-user {
+      color: rgb(7, 180, 114) !important;
+    }
+
+    .top-right .header-links li a.new-notify {
+      color: red !important;
+    }
+
+    .top-right .header-links li a i {
+      padding-right: 0;
+    }
+
+    .toparea .top-right .header-links {
+      background: rgb(175, 252, 222);
+      /* linear-gradient(to right, rgba(117, 199, 253, 0.856) 0%, rgb(17, 192, 236) 80%); */
+    }
+
+    .bottomarea {
+      background: linear-gradient(to right, rgb(1, 8, 59) 0%, rgb(17, 192, 236) 150%);
+      border-bottom: 3px solid #00e6f6;
+      /*box-shadow: rgba(0.1, 0.1, 0.1, 0.30) 0px 7px 8px;*/
+    }
+
+
+    .modal-dialog-centered {
+      justify-content: center;
+    }
+
+    .modal-content {
+      width: auto;
+      box-shadow: rgba(0.1, 0.1, 0.1, 0.30) 0px 7px 8px;
+    }
+
+    .modal-body {
+      font-size: 18px;
+    }
+
+    .modal-footer {
+      border: none;
+    }
+
+    .modal-footer a {
+      background: none;
+      color: rgb(7, 180, 114);
+      border: none;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .modal-footer a:hover {
+      background-color: rgb(214, 255, 239);
+      color: rgb(4, 88, 56);
+    }
+
+    .btn:focus,
+    a:focus {
+      outline: none !important;
+    }
+
+    .top-right .header-links li a.has-badge {
+      color: #e00849 !important;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 120px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      padding: 0;
+      transition: all .4s ease;
+    }
+
+    .dropdown-menu a {
+      color: #07051f;
+      font-size: 14px;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px dotted #3ff2ff;
+      border-radius: 0 !important;
+    }
+
+    .dropdown-menu li {
+      display: block !important;
+    }
+
+
+    .dropdown-menu a:hover,
+    .user-dropdown .dropdown-menu a:hover {
+      background-color: rgb(202, 247, 255) !important;
+    }
+
+    /*.dropdown:hover .dropbtn {
+      background-color: #00e6f6;
+      color: #fff;
+    }*/
+
+    a.dropbtn:hover .dropdown-menu {
+      display: block !important;
+    }
+
+    .user-dropdown .dropdown-menu {
+      top: 5px !important;
+      /*right: -5px !important;*/
+    }
+
+    .user-dropdown .dropdown-menu a {
+      letter-spacing: 0;
+      text-transform: none !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      padding: 0.5em !important;
+      padding-bottom: 0.3em !important;
+      padding-top: 0.4em !important;
+      line-height: 30px;
+    }
+
+    .user-dropdown .dropdown-menu a span {
+      padding-right: 5px;
+      color: #78787c;
+    }
+
+
+    /*new*/
+    nav.navbar ul li {
+      border-right: 1px solid #bbb;
+    }
+
+    nav.navbar ul li a {
+      color: #fff !important;
+      font-size: 14px !important;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 22px;
+    }
+
+    .nav-item .nav-link:hover{
+      background: #0b5fbe;
+    }
+
+    nav .navbar-toggler .navbar-toggler-icon {
+      color: #fff !important;
+    }
+  </style>
+  <!-- favicon image
+      {% load static %}
+      <link rel="icon" href="{%static 'img/favicon.ico'%}" type="image/x-icon">
+    -->
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header id="myheader1" class="sticky">
+
+    <div class="toparea">
+      <a class="logo py-0 mx-0" href="#">
+        <img src="/static/customer/images/school-icon.jpg" alt="logo" height="100">
+      </a>
+      <!--
+        <div class="site-heading">
+          <h3 class="header-text my-0"></h3>
+      </div>-->
+      <div class="top-right">
+        <ul class="header-links my-0">
+
+          <!-- <li>
+            <a href="#" class="notify-me" title="Notification">
+              <i class="fa fa-bell">
+              </i>
+              <span class="has-badge">2</span>
+            </a>
+          </li>
+
+          <span>|</span> -->
+
+          <li>
+            <div class="dropdown user-dropdown">
+              <a href="#" class="navlink tooltip-holder" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa fa-user"></i>
+                {{user.first_name}} {{user.last_name}}
+                <!--<div class="tooltip-text"></div>-->
+              </a>
+              <ul class="dropdown-menu dropdown-menu-start" id="dropdownMenuLink">
+                <li><a class="dropdown-item" href="/user/profile"><span class="fa fa-id-badge"></span>Profile</a></li>
+
+                <li><a class="dropdown-item" href="changepass">
+                    <span class="fa fa-unlock-alt"></span>Change Password</a></li>
+
+                <hr class="dropdown-divider">
+
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    title="Click to Logout"><span class="fa fa-sign-out-alt"></span>Logout</a>
+                </li>
+                <!--<a href="/upload">Upload</a>-->
+              </ul>
+            </div>
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottomarea" id="">
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="navbar navbar-expand-lg py-0">
+            <div class="container-fluid">
+
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" aria-current="page" href="/user/dashboard">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/getfees">Fees</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/contact">Report Query</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/dologout">Logout</a>
+                  </li>
+                  <!--<li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                  </li>-->
+                </ul>
+        
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- /Navbar -->
+
+
+  <!-- main body-->
+
+  <div id="content">
+
+    <div class="float-text">
+      <div class="container">
+        <div class="row mt-3">
+          <marquee id="floating" behavior="" direction="">This site is under development</marquee>
+        </div><br>
+      </div>
+    </div>
+
+    {% block body %}{% endblock body %}
+
+  </div>
+
+
+
+  <!-- logout modal-->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!--<div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Logout Confirmation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>-->
+        <div class="modal-body">
+          Would you want to Logout ?
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-sm" data-bs-dismiss="modal">Cancel</a>
+          <a href="/dologout" class="btn btn-sm">Confirm</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- end modal-->
+
+  <!-- footer -->
+
+  <!-- <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>company</h4>
+          <ul>
+            <li><a href="#">about us</a></li>
+            <li><a href="#">our services</a></li>
+            <li><a href="#">privacy policy</a></li>
+            <li><a href="#">affiliate program</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>get help</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">shipping</a></li>
+            <li><a href="#">returns</a></li>
+            <li><a href="#">order status</a></li>
+            <li><a href="#">payment options</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>online shop</h4>
+          <ul>
+            <li><a href="#">watch</a></li>
+            <li><a href="#">bag</a></li>
+            <li><a href="#">shoes</a></li>
+            <li><a href="#">dress</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>follow us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer> -->
+
+  {% block script %}{% endblock script %}
+  <!--
+  <script>
+    window.onscroll = function () { myFunction() };
+
+    var header = document.getElementById("myheader");
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+  </script>-->
+
+
+  <!--Optional JavaScript; choose one of the two! -->
+
+  <!--Option 1: Bootstrap Bundle with Popper-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>

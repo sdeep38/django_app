@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block style %}
+<style>
+    .profile-details {
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        background: none;
+    }
+
+    .profile-details .text-title {
+        background: none;
+        padding: 1.25rem;
+        color: #04078b;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 1px;
+        border: none;
+    }
+
+    .profile-details .box-profile {
+        border: none;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0px 0px 12px rgb(0 0 0 / 29%);
+    }
+
+    .profile-details .box-profile .table-responsive {
+        padding: 0;
+    }
+
+    .card-profile .profile-footer a {
+        font-size: 14px;
+    }
+
+    .b-0 {
+        border: 0;
+    }
+
+    td a.email {
+        letter-spacing: 0;
+        font-size: 14px;
+        color: #04078b;
+    }
+
+    td span.edit-btn {
+        color: #04078b;
+        float: right;
+        padding-right: 5px;
+        font-size: 14px;
+        padding-top: 5px;
+    }
+
+    li span {
+        font-weight: 600;
+    }
+
+    .text-title span {
+        background: #cfd0ff;
+        padding: 5px 10px;
+        border-radius: 30px;
+    }
+
+    .box-profile label {
+        padding-left: 0;
+        letter-spacing: 0;
+    }
+
+    .card-profile .i-text {
+        color: #888;
+        padding-bottom: 0;
+    }
+
+    .box-profile form .alert {
+        padding: 0.375rem 0.75rem;
+        line-height: 1.5;
+    }
+
+    /* added */
+    .files-list {
+        padding: 1.25em;
+    }
+
+    .filesection .pdf-files {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .filesection ul li {
+        margin-bottom: 6px;
+    }
+
+    .file {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        margin-bottom: 6px;
+        border-radius: 4px;
+        padding: .75rem;
+        justify-content: space-between;
+        letter-spacing: 0;
+
+    }
+
+    .file:hover {
+        background: #eee;
+    }
+
+    .file .assgn-subject {
+        text-align: center;
+        font-weight: 500;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .file .assgn-due-date {
+        font-size: 13px;
+        color: #045509;
+        font-style: italic;
+    }
+
+    .file .filedownload {
+        float: right;
+    }
+
+    .file .filedownload a {
+        letter-spacing: 0;
+        font-size: 14px;
+    }
+
+    span.assgn-title {
+        color: rgb(81, 109, 236);
+    }
+
+    /* my */
+
+    .files-list .nav-link {
+        letter-spacing: 0;
+        transition: none;
+    }
+
+    .files-list .nav-pills {
+        margin-bottom: .5rem;
+        font-size: 14px;
+    }
+
+    .files-list .nav-pills .nav-link {
+        background: none;
+        color: #04078b;
+        border-radius: 0;
+    }
+
+    .files-list .nav-pills .nav-link.active {
+        background: none;
+        border-bottom: 2px solid #04078b;
+        color: #04078b;
+        border-radius: 0;
+        font-weight: 600;
+    }
+
+    .files-list .nav-pills .nav-link:hover {
+        background: rgb(243, 242, 242) !important;
+    }
+
+    .tab-pane .none{
+        padding: 14px;
+        text-align: center;
+        font-size: 14px;
+        color: #555;
+
+    }
+
+    .files-list .content{
+        height: 200px;
+        overflow-y: scroll;
+        padding-right: 10px;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="main container mt-3">
+    <div class="row mb-5">
+        <div class="col-md-3">
+            <div class="pageheading">Classroom</div>
+            <div class="card card-body sub-card">
+                <div class="card-profile">
+                    <img class="profile-user-img img-responsive img-circle mb-2"
+                        src="/static/customer/images/no_image.png" alt="User">
+                    <h3 class="profile-username text-center"></h3>
+                    <ul class="list-group list-group-unbordered">
+
+                        <li class="list-group-item">
+                            <span><a href="#">Uploaded*</a></span> <a class="pull-right text-aqua">0</a>
+                        </li>
+                    </ul>
+                    <p class="forgot i-text my-0">* till <em>Nov 16, 2021</em></p>
+                    <!--
+                    <div class="profile-footer">
+                        <a href="#" class="btn btn-info btn-custom btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Logout</a>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body sub-card profile-details">
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">
+                        <span class="blue-bg"><i class="fa fa-file-signature"></i> My Assignments</span>
+                    </h3>
+
+                    <div class="assignments">
+
+                        <div class="files-list">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                        data-bs-target="#assigned" type="button" role="tab" aria-controls="assigned"
+                                        aria-selected="true">Assigned</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                        data-bs-target="#completed" type="button" role="tab"
+                                        aria-controls="completed" aria-selected="false">Completed</button>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <!-- <div class="tab-pane fade show active has-content" id="assigned" role="tabpanel" aria-labelledby="assigned-tab">
+                                    <a href="#" class="file">
+                                        <span class="badge assgn-title">Tutorial-5</span>
+                                        <div class="assgn-subject">Computer Science
+                                            
+                                        </div>
+                                        <div class="assgn-due-date">Due May 25 2022</div>
+                                    </a>
+                                </div> -->
+                                <div class="tab-pane fade show active" id="assigned" role="tabpanel" aria-labelledby="assigned-tab">
+                                    <div class="none">No assignments assigned</div>
+                                </div>
+                                <div class="tab-pane fade content" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                                    <a href="#" class="file">
+                                        <span class="badge assgn-title">Tutorial-5</span>
+                                        <div class="assgn-subject">Computer Science
+                                            
+                                        </div>
+                                        <div class="assgn-due-date">Due May 25 2022</div>
+                                    </a>
+                                    <a href="#" class="file">
+                                        <span class="badge assgn-title">Tutorial-5</span>
+                                        <div class="assgn-subject">Computer Science
+                                            
+                                        </div>
+                                        <div class="assgn-due-date">Due May 25 2022</div>
+                                    </a>
+                                    <a href="#" class="file">
+                                        <span class="badge assgn-title">Tutorial-5</span>
+                                        <div class="assgn-subject">Computer Science
+                                            
+                                        </div>
+                                        <div class="assgn-due-date">Due May 25 2022</div>
+                                    </a>
+                                    <a href="#" class="file">
+                                        <span class="badge assgn-title">Tutorial-5</span>
+                                        <div class="assgn-subject">Computer Science
+                                            
+                                        </div>
+                                        <div class="assgn-due-date">Due May 25 2022</div>
+                                    </a>
+                                    <a href="#" class="file">
+                                        <span class="badge assgn-title">Tutorial-5</span>
+                                        <div class="assgn-subject">Computer Science
+                                            
+                                        </div>
+                                        <div class="assgn-due-date">Due May 25 2022</div>
+                                    </a>
+                                    <a href="#" class="file">
+                                        <span class="badge assgn-title">Tutorial-5</span>
+                                        <div class="assgn-subject">Computer Science
+                                            
+                                        </div>
+                                        <div class="assgn-due-date">Due May 25 2022</div>
+                                    </a>
+                                    <!-- <div class="none">No assignments completed</div> -->
+                                </div>
+                              </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock body %}

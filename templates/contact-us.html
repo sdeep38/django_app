@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block style %}
+<style>
+    .contact-details {
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        background: none;
+    }
+
+    .contact-details .text-title {
+        background: none;
+        padding: 1.25rem;
+        color: #04078b;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 1px;
+        border: none;
+    }
+
+    .contact-details .box-profile {
+        border: none;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0px 0px 12px rgb(0 0 0 / 29%);
+    }
+
+    .contact-details .box-profile .contact-card {
+        padding: 15px;
+        padding-top: 0;
+    }
+
+    .contact-card textarea {
+        height: 100px;
+    }
+
+    .b-0 {
+        border: 0;
+    }
+
+    .btn-send {
+        background: linear-gradient(to right, #2b08a7 0, #2ec4f1 100%);
+        border: none;
+        width: 100px;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .btn-send:hover {
+        border: none;
+        color: #fff;
+        background: linear-gradient(to right, #2ec4f1 0, #2b08a7 100%);
+    }
+
+    .btn-send:focus {
+        border: none;
+        outline: none;
+        color: #fff;
+        background: #2b08a7;
+
+    }
+
+    li span {
+        font-weight: 600;
+    }
+
+    .email-us .email-id {
+        font-size: 15px;
+        color: #22f3d0;
+        font-weight: 500;
+        letter-spacing: 0;
+    }
+
+    .email-us .email-id:hover {
+        color: #f48000;
+    }
+
+    .icon-frame .icon-info {
+        color: #22f3d0;
+        font-size: 25px;
+        float: left;
+        line-height: 34px;
+        border: 1px solid #22f3d0;
+        border-radius: 100%;
+        padding: 5px;
+        /*display: block;
+        margin: 4px 11px 7px 0;
+        text-align: center !important;*/
+    }
+
+    .card-info {
+        border: 0;
+        border-left: 2px solid #1b199e;
+    }
+
+    .info-text {
+        color: #04078b;
+    }
+
+    .contact-box{
+        background: url('/static/customer/images/card_bg.jpg');
+        border: none;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="main container mt-3">
+    <div class="row mb-5">
+        <div class="col-md-3">
+            <div class="card card-body sub-card contact-box">
+                <div class="card-profile">
+                    <!--
+                    <img class="profile-user-img img-responsive img-circle mb-2"
+                        src="/static/customer/images/no_image.png" alt="User">-->
+                    <h3 class="profile-username text-center"></h3>
+                    <div class="contact-info py-3">
+                        <div class="email-us">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="icon-frame">
+                                        <i class="fa fa-envelope icon-info"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-9  col-sm-12 pl-0">
+                                    <p class="info-text my-0">EMAIL US</p>
+                                    <a href="#" class="email-id">help@sbs.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-info py-3">
+                        <div class="email-us">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="icon-frame">
+                                        <i class="fa fa-phone icon-info"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 col-sm-8">
+                                    <p class="info-text my-0">CALL US</p>
+                                    <span class="email-id">0343-2571457</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body sub-card contact-details">
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">
+                        <span class="blue-bg">Report Your Query</span>
+                    </h3>
+                    <div class="contact-card">
+                        <form method="POST" action="/contact">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="email">Email Address :</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name :</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="{{request.user.first_name}}&nbsp;{{request.user.last_name}}" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number :</label>
+                                <input type="tel" class="form-control" id="phone" name="phone"
+                                    placeholder="+91-Your Phone Number" pattern="\d*" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="desc">Message :</label>
+                                <textarea class="form-control" id="desc" name="desc" rows="3"
+                                    placeholder="Your Message Here . . ." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-send">SEND <span
+                                    class="fa fa-angle-right"></span></button>
+                        </form>
+                    </div>
+
+                </div>
+                <!--
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">Account Details</h3>
+                    <div class="table-responsive around-10">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="td-title mb-2">Email-Address</td>
+                                    <td>sample@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title mb-2">Aadhar No.</td>
+                                    <td>xxxxxx898</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">Address Details</h3>
+                    <div class="table-responsive around-10">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="td-title mb-2">Area/Locality</td>
+                                    <td>NewTown</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title mb-2">State</td>
+                                    <td>Sikkim</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title mb-2"></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

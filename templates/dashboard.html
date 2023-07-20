@@ -1,0 +1,342 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome {{request.user.first_name}} {{request.user.last_name}}
+{% endblock title %}
+
+{% block style %}
+<style>
+    .profile-details {
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        background: none;
+    }
+
+    .profile-details .text-title {
+        background: none;
+        padding: 1.25rem;
+        color: #04078b;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 1px;
+        border: none;
+        margin: 0;
+    }
+
+    .profile-details .box-profile {
+        border: none;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+        margin-bottom: 0;
+    }
+
+    .profile-details .box-profile .table-responsive {
+        padding: 0;
+    }
+
+    .card-profile .profile-footer a {
+        font-size: 14px;
+    }
+
+    td a.email {
+        letter-spacing: 0;
+        font-size: 14px;
+        color: #04078b;
+    }
+
+    td span.edit-btn {
+        color: #04078b;
+        float: right;
+        padding-right: 5px;
+        font-size: 14px;
+        padding-top: 5px;
+    }
+
+    li span {
+        font-weight: 600;
+    }
+
+    table {
+        margin-bottom: 0 !important;
+    }
+
+    table tr td:first-child {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    table tr td:last-child {
+        color: #02022c;
+    }
+
+    table tr td {
+        border-color: #ddd;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    table tr.b-0 td {
+        border-bottom: 0;
+    }
+
+    .box-profile form button {
+        border-radius: 0px 4px 4px 0px;
+    }
+
+    .box-profile form .form-group input {
+        border: 1px solid #999;
+        margin-top: 0;
+    }
+
+    .box-profile form .form-group input:focus {
+        border: 1px solid #1CB5E0 !important;
+    }
+
+    .void {
+        display: none !important;
+    }
+
+    .profile-left li {
+        font-size: 15px;
+    }
+
+    .user-role {
+        color: #8f9092;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+
+
+    .quick-links .link {
+        font-size: 16px;
+        letter-spacing: 0;
+        border-radius: 4px;
+        padding: 0.5em;
+        margin-right: 10px;
+        border: 1px solid #02022c;
+        box-shadow: 0px 0px 5px rgba(99, 58, 4, 0.5);
+    }
+
+    .link-green {
+        color: #034b0f;
+    }
+
+    .link .link-blue {
+        color: #0c91b9 !important;
+    }
+
+    .link.link-yellow {
+        color: #f68000;
+        border-color: #f68000;
+    }
+
+    /* new */
+    .q-links .link {
+        border-radius: 4px;
+        padding: 1em !important;
+        margin-top: 6px;
+        font-weight: 500;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+        /*background: linear-gradient(to top, #44f7a3 0%, #ccecdd 100%);*/
+        border-left: 3px solid #0c91b9;
+        letter-spacing: 0;
+        /*background: #9ffad0;*/
+    }
+
+    .link-text {
+        transition: all .4s ease;
+    }
+
+    .q-links a.link:hover {
+        box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0 !important;
+    }
+
+    .q-links a.link:hover .link-text {
+        padding-left: 10px !important;
+        text-decoration: underline;
+    }
+
+    .q-links .circle-icon {
+        text-align: center;
+        line-height: 30px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0px 0px 5px rgba(1, 46, 23, 0.5);
+    }
+
+    .q-links .circle-icon span {
+        padding: 8px;
+    }
+
+    /* 05.06.23 at 2.35PM */
+    .sidemenu .left-sub-block {
+        border: 1px solid #06799c;
+        margin-bottom: 1rem;
+    }
+
+    .sidemenu .left-sub-block .block-top {
+        font-size: 14px;
+        margin: 0;
+        background: #06799c;
+        padding: .5em;
+        color: #fff;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="main container mt-3">
+    <div class="row mb-5">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="pageheading">Dashboard</div>
+            <div class="sidemenu">
+                <div class="card card-body left-sub-block student-navigation-block nopadding">
+
+                    <div class="block-top">
+                        Student Navigation
+                    </div>
+                    <div class="block-bottom">
+                        <ul class="menulinks">
+                            <li><a href="/user/courses" class="pdeflt"><span class="fa fa-link"></span> My Courses</a>
+                            </li>
+                            <li><a href="#" class="pdeflt" id="dis"><span class="fa fa-link"></span> My Timetable</a>
+                            </li>
+                            <li><a href="/user/exam" class="pdeflt"><span class="fa fa-link"></span> Past Year Papers</a>
+                            </li>
+                            <li><a href="/user/archives" class="pdeflt"><span class="fa fa-link"></span> My Assignments</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+                <div class="card card-body left-sub-block administrative-block nopadding">
+
+                    <div class="block-top">
+                        Administration
+                    </div>
+                    <div class="block-bottom">
+                        <ul class="menulinks">
+                            <li><a href="/user/profile" class="pdeflt"><span class="fa fa-angle-right"></span> My Profile</a>
+                            </li>
+                            <li><a href="/user/changepass" class="pdeflt"><span class="fa fa-angle-right"></span> Change
+                                    Password</a></li>
+                            <li><a href="/dologout" class="pdeflt"><span class="fa fa-angle-right"></span> Logout</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 nopadding">
+            <div class="card card-body sub-card profile-details">
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    <strong>Well done!</strong> {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+
+                <!-- User -->
+                <div class="box-profile bsn">
+                    <h3 class="display-6 text-title">
+                        <span class="blue-bg"><i class="fa fa-bell f12"></i> Notice Board </span>
+                    </h3>
+                    <div class="notice-section">
+                        {% if notices %}
+                        {% for notice in notices %}
+                        <div class="notice">
+                            <div class="notice-title">{{notice.title}}
+                                {% if notice.new_tag %}<span class="new">new</span>{% endif %}
+                            </div>
+                            <div class="notice-body">
+                                <p>{{notice.body|safe}}</p>
+                            </div>
+                            <div class="notice-dmy"><span class="dtag"><em>{notice.created_at}</em></span><span
+                                    class="ttag"><em>{{notice.created_at|time:"P"}}</em></span>
+                                </em></div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+
+            <div class="card card-body sub-card bs0">
+                <div class="card-profile">
+                    <!--<span style="float: right;">
+                        <a href="#" class="btn btn-custom btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            style="border-radius: 0 0 50% 50%;" title="Change Profile Pic"><i
+                                class="fas fa-camera"></i></a>
+                    </span>-->
+                    <img class="profile-user-img img-responsive img-circle mb-2"
+                        src="/static/customer/images/no_image.png" alt="User">
+                    <h6 class="profile-username text-center user-role">Student</h6>
+                    <ul class="list-group list-group-unbordered profile-left">
+
+                        <li class="list-group-item">
+                            <span>Admission No.</span> <a class="pull-right text-aqua">{{user.last_name}}</a>
+                        </li>
+
+                        <li class="list-group-item">
+                            <span>Roll No.</span> <a class="pull-right text-aqua">34</a>
+                        </li>
+
+                        <li class="list-group-item">
+                            <span>Class</span> <a class="pull-right text-aqua">12</a>
+                        </li>
+                        <li class="list-group-item">
+                            <span>Section</span> <a class="pull-right text-aqua">F</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- <div class="q-links">
+
+                <a href="user/courses" class="link bs0">
+                    <div class="circle-icon link-blue"><span class="fa fa-chalkboard-teacher"></span></div>
+                    <div class="link-text link-green px-2">My Courses</div>
+                </a>
+                <a href="classroom" class="link bs0">
+                    <div class="circle-icon link-blue"><span class="fa fa-calendar"></span></div>
+                    <div class="link-text link-green px-2">My Timetable</div>
+                </a>
+                <a href="user/exam" class="link bs0">
+                    <div class="circle-icon link-blue"><span class="fa fa-pen"></span></div>
+                    <div class="link-text link-green px-2">Examination</div>
+                </a>
+
+                <a href="user/archives" class="link bs0">
+                    <div class="circle-icon link-blue"><span class="fa fa-book"></span></div>
+                    <div class="link-text link-green px-2">PYQs</div>
+
+                </a>
+
+               
+            </div> -->
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block script %}
+
+{% endblock script %}

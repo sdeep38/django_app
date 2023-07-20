@@ -1,0 +1,379 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome {{request.user}}
+{% endblock title %}
+
+{% block style %}
+<style>
+    .profile-details {
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        background: none;
+    }
+
+    .profile-details .text-title {
+        background: none;
+        padding: 1.25rem;
+        color: #04078b;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 1px;
+        border: none;
+    }
+
+    .profile-details .box-profile {
+        border: none;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        margin-bottom: 0;
+    }
+
+    .profile-details .box-profile .table-responsive {
+        padding: 0;
+    }
+
+    .card-profile .profile-footer a {
+        font-size: 14px;
+    }
+
+    td a.email {
+        letter-spacing: 0;
+        font-size: 14px;
+        color: #04078b;
+    }
+
+    td span.edit-btn {
+        color: #04078b;
+        float: right;
+        padding-right: 5px;
+        font-size: 14px;
+        padding-top: 5px;
+    }
+
+    li span {
+        font-weight: 600;
+    }
+
+    table {
+        margin-bottom: 0 !important;
+    }
+
+    table tr td:first-child {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    table tr td:last-child {
+        color: #02022c;
+    }
+
+    table tr td {
+        border-color: #ddd;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    table tr.b-0 td {
+        border-bottom: 0;
+    }
+
+    .box-profile form button {
+        border-radius: 0px 4px 4px 0px;
+    }
+
+    .box-profile form .form-group input {
+        border: 1px solid #999;
+        margin-top: 0;
+    }
+
+    .box-profile form .form-group input:focus {
+        border: 1px solid #1CB5E0 !important;
+    }
+
+    .void {
+        display: none !important;
+    }
+
+    .profile-left li {
+        font-size: 15px;
+    }
+
+    .edit-icon{
+        float: right;
+        font-size: 13px;
+        background: #02046b; 
+        color: #fff; 
+        padding: 3px; 
+        border-radius: 4px;
+        letter-spacing: 1px;
+        font-weight: 400;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    a.edit-icon:hover{
+        color: #fff;
+    }
+
+    input[type='email'], input[type='text']{
+        height: 100%;
+    }
+
+    .login-activity{
+        font-size: 13px;
+        color: #02022c;
+    }
+
+    .actag{
+        font-weight: 600 !important;
+        margin-bottom: 8px;
+    }
+    
+    .login-activity .date-time{
+        font-weight: 400;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="main container mt-3">
+    <div class="row mb-5">
+        <div class="col-md-3">
+            <div class="card card-body sub-card bs0">
+                
+                <div class="card-profile">
+                    
+                    <img class="profile-user-img img-responsive img-circle mb-2"
+                        src="/static/customer/images/no_image.png" alt="User">
+                    <h3 class="profile-username text-center"></h3>
+                    <ul class="list-group list-group-unbordered profile-left">
+
+                        <li class="list-group-item">
+                            <span>Admission No.</span> <a class="pull-right text-aqua">{{user.last_name}}</a>
+                        </li>
+
+                        <li class="list-group-item">
+                            <span>Roll No.</span> <a class="pull-right text-aqua">34</a>
+                        </li>
+
+                        <li class="list-group-item">
+                            <span>Class</span> <a class="pull-right text-aqua">12</a>
+                        </li>
+                        <li class="list-group-item">
+                            <span>Section</span> <a class="pull-right text-aqua">F</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidemenu mt-3">
+                <div class="card card-body bs0">
+
+                    <h5 class="cardtop">Login Activity</h5>
+                    <div class="cardbottom">
+                        <div class="login-activity">
+                            <div class="actag">First Access<br><span class="date-time">{{user.date_joined}}({{user.date_joined|timesince}})</span></div>
+                            <div class="actag">Last Access<br><span class="date-time">{{user.last_login}}({{user.last_login|timesince}})</span></div>
+                        </div>
+                    </div>
+
+
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body sub-card profile-details">
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    <strong>Well done!</strong> {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <!-- User -->
+                <div class="box-profile ">
+                    <h3 class="display-6 text-title">
+                        <span class="blue-bg"><i class="fa fa-user-graduate f12"></i> User Details</span>
+                    </h3>
+                    <div class="table-responsive around-10 fo-l">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Name
+                                        <span class="colon" style="float: right;">:</span>
+                                    </td>
+                                    <td>{{user.first_name}} {{user.last_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mb-2">DOB
+                                        <span class="colon" style="float: right;">:</span>
+                                    </td>
+                                    <td>{{profile.dob|date:"SHORT_DATE_FORMAT"}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mb-2">Blood Group
+                                        <span class="colon" style="float: right;">:</span>
+                                    </td>
+                                    <td>{{profile.blood_grp}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mb-2">Gender
+                                        <span class="colon" style="float: right;">:</span>
+                                    </td>
+                                    <td>{{profile.gender}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="mb-2">Mobile
+                                        <span class="colon" style="float: right;">:</span>
+                                    </td>
+                                    <td>{{profile.mobile}}
+                                        <a href="#" id="addcall"><span class="edit-btn fa fa-edit"></span></a>
+                                    </td>
+                                </tr>
+                                <tr class="b-0">
+                                    <td class="mb-2">Email
+                                        <span class="colon" style="float: right;">:</span>
+                                    </td>
+                                    <td>
+                                        {% if user.email == '' %}
+                                        <a href="#" class="email" id="addemail" onclick='addmail()'>Add Email</a>
+                                        {% else %}
+                                        {{user.email}}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 offset-md-6">
+
+                        <div class="profile-details box-extend" id="emailbox" style="display: none;">
+                            <div class="box-profile my-1" style="padding: 10px;">
+                                <h6>Add Email
+                                    <span style="float: right;">
+                                        <a href="#" id="clsemail"><i class="fa fa-window-close"
+                                                style="color: blue; font-weight: 600;"></i></a>
+                                    </span>
+                                </h6>
+                                <form action="/update/email/{{user.id}}" method="post"
+                                    style="display: flex; justify-content: space-between;">
+                                    {% csrf_token %}
+                                    
+                                    <div class="row">
+                                        
+                                        <div class="col-sm-10 ip_grp">
+                                            <input type="email" id="updem" name="email" placeholder="Enter Email" required>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn-submit" id="updem-btn">Add</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="profile-details box-extend" id="callbox" style="display: none;">
+                            <div class="box-profile my-1" style="padding: 10px;">
+                                <h6>Update Mobile Number
+                                    <span style="float: right;">
+                                        <a href="#" id="clscall"><i class="fa fa-window-close"
+                                                style="color: blue; font-weight: 600;"></i></a>
+                                    </span>
+                                </h6>
+                                <form action="/update/mobile/" method="post"
+                                    style="display: flex; justify-content: space-between;">
+                                    {% csrf_token %}
+                                    <div class="form-group my-0">
+                                        <input type="text" id="updcl" name="phone" value="{{profile.mobile}}">
+                                    </div>
+                                    <button type="submit" class="btn-submit" id="updcl-btn">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address -->
+                <div class="box-profile mt-3">
+                    <h3 class="display-6 text-title">
+                        <span class="blue-bg"><i class="fa fa-address-book f12"></i> Address Details</span>
+                    </h3>
+                    <div class="table-responsive around-10 fo-l">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Address
+                                        <span class="colon" style="float: right;">:</span>
+                                    </td>
+                                    <td>2A/19 Dharmendra Road</td>
+                                </tr>
+                                <tr>
+                                    <td>City/Town
+                                        <span class="colon" style="float: right;">:</span>
+                                    </td>
+                                    <td>Durgapur</td>
+                                </tr>
+                                <tr>
+                                    <td>Pincode
+                                        <span class="colon" style="float: right;">:</span>
+                                    </td>
+                                    <td>713205</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block script %}
+<script>
+    var addemailbtn = document.getElementById("addemail");
+    var addcallbtn = document.getElementById("addcall");
+    var ebox = document.getElementById("emailbox");
+    var clbox = document.getElementById("callbox");
+    var clclsbtn = document.getElementById("clscall");
+    var emclsbtn = document.getElementById("clsemail");
+
+    function addmail() {
+        ebox.style.display = 'block';
+        addemailbtn.classList.add("void");
+        if (clbox.style.display === 'block') {
+            clbox.style.display = 'none';
+            addcallbtn.classList.toggle("void");
+        }
+    }
+
+    clclsbtn.onclick = function () {
+        clbox.style.display = 'none';
+        addcallbtn.classList.toggle("void");
+    }
+
+    emclsbtn.onclick = function () {
+        ebox.style.display = 'none';
+        addemailbtn.classList.toggle("void");
+    }
+
+    addcallbtn.onclick = function () {
+        clbox.style.display = 'block';
+        addcallbtn.classList.add("void");
+        if (ebox.style.display === 'block') {
+            ebox.style.display = 'none';
+            addemailbtn.classList.toggle("void");
+        }
+    }
+
+
+</script>
+
+{% endblock script %}

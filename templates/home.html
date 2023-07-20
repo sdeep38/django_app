@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+  
+
+{% block body %}
+
+<!--info cards-->
+
+
+<div class="container-fluid mt-3 mx-0">
+
+    <div class="cart-header">
+        <h3 class="large-text">My Cart</h3>
+    </div>
+
+
+
+    <!--<div class="row">
+
+
+
+        <div class="col-md-4 col-sm-12">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header display-6">Total Orders</div>
+                <div class="card-body">
+                    <h3 class="card-title text-center display-1"><strong>10</strong></h3>
+                </div>
+            </div>
+            
+        </div>
+
+
+
+        <div class="col-md-4 col-sm-12">
+            <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                <div class="card-header display-6">Pending Orders</div>
+                <div class="card-body">
+                    <h3 class="card-title text-center display-1"><strong>10</strong></h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-12">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header display-6">Total Amount</div>
+                <div class="card-body">
+                    <h3 class="card-title text-center display-1"><strong>10</strong></h3>
+                </div>
+            </div>
+        </div>
+        </div>-->
+
+
+    <!--Main content-->
+
+
+    <div class="row mt-3">
+
+        <div class="col-md-9 col-sm-12">
+            <div class="card sub-card mb-3">
+
+                <div class="order-card-top p-2">
+                    <h1 class="display-4 p-2 cart-title my-0">Orders</h1>
+                </div>
+
+                <div class="order-card-bottom">
+                    <div class="jumbotron">
+
+                        <!-- empty cart -->
+
+                        <!--
+                    <div class="empty-cart">
+                        <div class="image-section mx-2">
+                            <img src="/static/customer/images/empty-cart.png" alt="Empty">
+                        </div>
+
+                        <div class="text-section text-center">
+                            <h3 class="my-4">Your Shopping Cart is Empty</h3>
+                            <a href="" class="btn btn-info">Start Shopping
+                                <span class="fa fa-arrow-alt-circle-right"></span>
+                            </a>
+                        </div>
+                    </div>-->
+
+                        <!-- full cart --> 
+
+                        <div class="cart-body">
+                            <div class="item-card mb-2" id="i-card">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <!-- image-holder -->
+                                        <div class="image-section">
+                                            <a href=""><img
+                                                    src="/static/customer/images/harry-potter.jpg" width="50"
+                                                    height=" 60" alt="Harry"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <!-- text-holder -->
+                                        <div class="text-section text-center">
+                                            <p class="item-title my-0">Harry Potter and the Cursed Child</p>
+                                            <p class="item-author my-0 text-center"><em>J.K Rowling</em></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!-- price-holder -->
+                                        <div class="price-section">
+                                            <a class="item-price"><span class="fa fa-rupee-sign"></span> 150.00</a>
+                                            <h3 class="my-0">
+
+                                                <input type="number" class="text-center" name="quantity" min="1" max="3"
+                                                    value="1">
+
+                                                <a class="btn-sm remove" href="#" title="Remove from Cart">
+                                                    <span class="fa fa-trash-alt"></span>
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item-card mb-2">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <!-- image-holder -->
+                                        <div class="image-section">
+                                            <a href=""><img
+                                                    src="/static/customer/images/harry-potter.jpg" width="50"
+                                                    height=" 60" alt="Harry"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <!-- text-holder -->
+                                        <div class="text-section text-center">
+                                            <p class="item-title my-0">Harry Potter and the Cursed Child</p>
+                                            <p class="item-author my-0 text-center"><em>J.K Rowling</em></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!-- price-holder -->
+                                        <div class="price-section">
+                                            <a class="item-price"><span class="fa fa-rupee-sign"></span> 150.00</a>
+                                            <h3 class="my-0">
+
+                                                <input type="number" class="text-center" name="quantity" min="1" max="3"
+                                                    value="1">
+
+
+                                                <a class="btn-sm remove" href="#" title="Remove from Cart">
+                                                    <span class="fa fa-trash-alt"></span>
+                                                </a>
+
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-bottom">
+                        <a class="btn btn-outline-success btn-sm new-item" href="#"><i class="fa fa-plus"></i>
+                            Continue
+                            Shopping</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div> <!-- / col-md-9 -->
+
+        <div class="col-md-3">
+            <div class="card card-info sub-card order-count">
+                <div class="order-count-menu mb-3">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <b>Total Price</b><a class="pull-right">
+                                <span class="fa fa-rupee-sign"></span> 300.50</a>
+                        </li>
+                    </ul>
+                    <!--<p class="forgot i-text">* This is the total MRP of all purchased products ,
+                            excluding taxes and discounts</p>-->
+
+                </div>
+                <div class="order-count-bottom text-center">
+                    <a class="btn btn-primary btn-checkout" href="#" data-bs-toggle="modal"
+                        data-bs-target="#checkoutModal">Checkout <i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- checkout modal -->
+        <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Checkout Confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="modal-text">Please recheck all your orders before proceeding to checkout</h3>
+                        <table class="table my-4 no-bg modal-table">
+                            <tr>
+                                <td class="mb-2">
+                                    <a href="#"><img src="/static/customer/images/harry-potter.jpg" width="50"
+                                            height=" 60" alt="Harry"></a>
+                                </td>
+                                <td class="text-center py-3">Qty:
+                                    <span class="text-aqua">2</span>
+                                </td>
+                                <td class="py-3 text-aqua"><span class="fa fa-rupee-sign"></span> 150.00</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#"><img src="/static/customer/images/harry-potter.jpg" width="50"
+                                            height=" 60" alt="Harry"></a>
+                                </td>
+                                <td class="text-center py-3">Qty:
+                                    <span class="text-aqua">2</span>
+                                </td>
+                                <td class="py-3 text-aqua"><span class="fa fa-rupee-sign"></span> 150.00</td>
+                            </tr>
+                        </table>
+                        <div class="modal-price">
+                            <div class="col-md-6 ms-auto">
+                                <div class="price">
+                                    <span class="pull-left forgot i-text">Total Amount</span>
+                                    <span class="pull-right">hello</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" href="{% url 'checkout' %}" class="btn btn-primary btn-sm">Proceed
+                            <span class="fa fa-angle-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Order Summary-->
+        <!--
+            <div class="col-md-3">
+                <div class="card card-body side-card summary-card">
+                    <div class="side-card-body">
+                        <h3 class="side-card-top mb-2">Order Summary</h3>
+                        <p class="forgot i-text">For purchases on 29.10.2021 :</p>
+                        <table class="table table-hover summary">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h6 class="pull-left">Subtotal</h6>
+                                    </td>
+                                    <td><span class="fa fa-rupee-sign"></span> 50.00</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="pull-left">GST</h6>
+                                    </td>
+                                    <td><span class="fa fa-rupee-sign"></span> 30.00</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="pull-left">Delivery Charges</h6>
+                                    </td>
+                                    <td><span class="fa fa-rupee-sign"></span> 0.00</td>
+                                </tr><tr>
+                                    <td>
+                                        <h6 class="pull-left">Discount</h6>
+                                    </td>
+                                    <td><span class="fa fa-rupee-sign"></span> 10.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="side-card-bottom">
+                            <table class="table summary">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h6 class="pull-left">Total</h6>
+                                        </td>
+                                        <td class="pull-right text-aqua"><span class="fa fa-rupee-sign"></span> 70.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+
+        <!--
+                        <div class="side-card-logo">
+                            <img src="/static/customer/images/empty-cart.png" width="100%" height="100%" alt="Empty">
+                        </div>
+                    -->
+        <!--<p class="forgot i-text">** Updated last month</p>-->
+        <!--</div>
+                </div>
+            </div>-->
+
+        <!-- / Order Summary-->
+
+    </div> <!-- / row mt-3 -->
+
+
+</div> <!-- / main container -->
+
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+{% endblock body %}

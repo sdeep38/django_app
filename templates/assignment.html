@@ -1,0 +1,441 @@
+{% extends 'base.html' %}
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block style %}
+<style>
+    .profile-details {
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        background: none;
+    }
+
+    .profile-details .text-title {
+        background: none;
+        padding: 1.25rem;
+        color: #04078b;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 1px;
+        border: none;
+    }
+
+    .profile-details .box-profile {
+        border: none;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0px 0px 12px rgb(0 0 0 / 29%);
+    }
+
+    .profile-details .box-profile .table-responsive {
+        padding: 0;
+    }
+
+    .card-profile .profile-footer a {
+        font-size: 14px;
+    }
+
+    .b-0 {
+        border: 0;
+    }
+
+    td a.email {
+        letter-spacing: 0;
+        font-size: 14px;
+        color: #04078b;
+    }
+
+    td span.edit-btn {
+        color: #04078b;
+        float: right;
+        padding-right: 5px;
+        font-size: 14px;
+        padding-top: 5px;
+    }
+
+    li span {
+        font-weight: 600;
+    }
+
+    .text-title span {
+        background: #cfd0ff;
+        padding: 5px 10px;
+        border-radius: 30px;
+    }
+
+    .box-profile label {
+        padding-left: 0;
+        letter-spacing: 0;
+    }
+
+    .card-profile .i-text {
+        color: #888;
+        padding-bottom: 0;
+    }
+
+    .box-profile form .alert {
+        padding: 0.375rem 0.75rem;
+        line-height: 1.5;
+    }
+
+    /* added */
+    .files-list {
+        padding: 1.25em;
+    }
+
+    .filesection .pdf-files {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .filesection ul li {
+        margin-bottom: 6px;
+    }
+
+    .file {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        margin-bottom: 6px;
+        border-radius: 4px;
+        padding: .75rem;
+        justify-content: space-between;
+        letter-spacing: 0;
+
+    }
+
+    .file:hover {
+        background: #eee;
+    }
+
+    .file .assgn-subject {
+        text-align: center;
+        font-weight: 500;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .file .assgn-due-date {
+        font-size: 13px;
+        color: #045509;
+        font-style: italic;
+    }
+
+    .file .filedownload {
+        float: right;
+    }
+
+    .file .filedownload a {
+        letter-spacing: 0;
+        font-size: 14px;
+    }
+
+    span.assgn-title {
+        color: rgb(81, 109, 236);
+    }
+
+    /* my */
+
+    .files-list .nav-link {
+        letter-spacing: 0;
+        transition: none;
+    }
+
+    .files-list .nav-pills {
+        margin-bottom: .5rem;
+        font-size: 14px;
+    }
+
+    .files-list .nav-pills .nav-link {
+        background: none;
+        color: #04078b;
+        border-radius: 0;
+    }
+
+    .files-list .nav-pills .nav-link.active {
+        background: none;
+        border-bottom: 2px solid #04078b;
+        color: #04078b;
+        border-radius: 0;
+    }
+
+    .files-list .nav-pills .nav-link:hover {
+        background: rgb(243, 242, 242) !important;
+    }
+
+    .tab-pane .none {
+        padding: 14px;
+        text-align: center;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .files-list .tab-pane {
+        height: 200px;
+        overflow-y: scroll;
+        padding-right: 10px;
+    }
+
+    /* login */
+    .assgn-box {
+        padding: 1rem 2rem 2rem;
+    }
+
+    .section-top,
+    .section-middle {
+        display: flex;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .section-top {
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: .5rem;
+        margin-bottom: .5em;
+    }
+
+    .section-top .subject {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .section-top .title .topic {
+        color: rgb(30, 8, 138);
+
+    }
+
+    .section-top .title .subject {
+        color: #888;
+        margin-bottom: 0;
+    }
+
+    .section-top .due {
+        color: #666;
+        font-weight: 500;
+        text-align: end;
+    }
+
+    .section-top .due .due-date {
+        font-size: 14px;
+    }
+
+    .section-top .due .due-time {
+        font-size: 14px;
+    }
+
+    .section-middle .instructions {
+        border-right: 1px solid #ddd;
+    }
+
+    .heading {
+        font-size: 14px;
+        padding-left: 10px;
+        color: #555;
+        font-weight: 600;
+    }
+
+    ul.items li {
+        font-size: 14px;
+        color: #444;
+        /* line-height: 20px; */
+    }
+
+    .section-bottom {
+        padding: .75rem;
+    }
+
+    .sform {
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .sform button {
+        background: #0473b3;
+    }
+
+    .sform button:hover {
+        background: #035a8d;
+
+    }
+
+    .sform label {
+        color: rgb(30, 8, 138);
+        font-size: 15px;
+    }
+
+    .sform label:hover {
+
+        cursor: pointer;
+    }
+
+    span.sm {
+        font-size: 13px;
+    }
+
+    a.sfile {
+        color: #444;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        background: #eee;
+        margin: 1rem;
+        padding: .5em;
+        border-radius: 6px;
+    }
+
+    /* .attached-files a {
+        display: flex;
+        letter-spacing: 0;
+        align-items: center;
+        justify-content: space-between;
+    } */
+
+
+    .fa-file-pdf, #remove {
+        color: rgb(209, 8, 8);
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="main container mt-3">
+    <div class="row mb-5">
+        <div class="col-md-3">
+            <div class="pageheading">Classroom</div>
+            <div class="card card-body sub-card">
+                <div class="card-profile">
+                    <img class="profile-user-img img-responsive img-circle mb-2"
+                        src="/static/customer/images/no_image.png" alt="User">
+                    <h3 class="profile-username text-center"></h3>
+                    <ul class="list-group list-group-unbordered">
+
+                        <li class="list-group-item">
+                            <span><a href="#">Uploaded*</a></span> <a class="pull-right text-aqua">0</a>
+                        </li>
+                    </ul>
+                    <p class="forgot i-text my-0">* till <em>Nov 16, 2021</em></p>
+                    <!--
+                    <div class="profile-footer">
+                        <a href="#" class="btn btn-info btn-custom btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Logout</a>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body sub-card profile-details">
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">
+                        <span class="blue-bg"><i class="fa fa-file-signature"></i> My Assignments</span>
+                    </h3>
+
+                    <div class="assignments">
+
+                        <div class="assgn-box">
+                            <div class="section-top">
+                                <div class="title">
+                                    <h5 class="topic">Tutorial-5</h5>
+                                    <h5 class="subject">Computer Science</h5>
+                                </div>
+                                <div class="due">
+                                    <div class="due-date">Due : 25 May 2022 at 12.30</div>
+                                    <div class="due-time">Closes : 25 May 2022 at 13.00</div>
+                                </div>
+                            </div>
+                            <div class="section-middle">
+                                <div class="col-md-6">
+                                    <div class="instructions">
+                                        <h3 class="heading">Instructions</h3>
+                                        <ul class="items">
+                                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, obcaecati.
+                                            </li>
+                                            <li>Lorem ipsum dolor sit amet.</li>
+                                            <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
+                                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit a
+                                                distinctio et debitis unde?
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feedback">
+                                        <h3 class="heading">Feedback</h3>
+                                        <ul class="items">
+                                            <li>Lorem ipsum dolor sit amet.</li>
+                                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,
+                                                quia!</li>
+                                            <li>Lorem, ipsum dolor.</li>
+                                            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="section-bottom">
+                                <div class="stud-work">
+                                    <form action="#" method="post" class="d-flex sform" id="sform">
+                                        {% csrf_token %}
+                                        <input type="file" class="my-file" id="fbtn" hidden />
+                                        <label for="fbtn" id="file-label"><span class="fa fa-link sm"></span> Add work</label>
+                                        
+                                        <button type="submit" class="btn btn-simple w20 btn-sm">Hand
+                                            in</button>
+                                    </form>
+
+                                </div>
+                                <div class="attached-files">
+                                    <!-- <a href="#" class="sfile mb-3"><span class="fa fa-file-pdf"></span> Soumyadeep_21IE10038.pdf</a> -->
+
+                                    <!-- <a href="#" class="sfile mb-3"><span class="fa fa-file-pdf"></span><span
+                                            id="file-name"></span><span class="fa fa-trash-alt sm" id="remove"></span></a> -->
+                                    <a href="#" class="lnk"><span id="file-name"></span><span class="fa fa-trash-alt sm px-2" id="remove" title="remove"></span></a>
+                                    
+                                    
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock body %}
+    {% block script %}
+    <script>
+        const actualBtn = document.getElementById('fbtn');
+
+        const fileChosen = document.getElementById('file-name');
+        const fileLabel = document.getElementById('file-label');
+        
+        const removeBtn = document.getElementById('remove');
+        removeBtn.style.display = 'none';
+        
+
+        $('#sform').on('submit', function (e) {
+
+            if(actualBtn.value == ""){
+                e.preventDefault();
+                alert('Please select a file');
+            }
+            alert('1 file found');
+        })
+        actualBtn.addEventListener('change', function () {
+            
+            fileLabel.innerHTML = 'My Work';
+            fileLabel.setAttribute('for', '');
+            fileChosen.textContent = this.files[0].name;
+            removeBtn.style.display = '';
+        })
+
+      
+
+
+
+        
+    </script>
+    {% endblock script %}

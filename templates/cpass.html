@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome {{request.user}}
+{% endblock title %}
+
+{% block style %}
+<style>
+    .profile-details {
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        background: none;
+    }
+
+    .profile-details .text-title {
+        background: none;
+        padding: 1.25rem;
+        color: #04078b;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 1px;
+        border: none;
+    }
+
+    .profile-details .box-profile {
+        border: none;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        margin-bottom: 0;
+    }
+
+    .profile-details .box-profile .table-responsive {
+        padding: 0;
+    }
+
+    .card-profile .profile-footer a {
+        font-size: 14px;
+    }
+
+    td a.email {
+        letter-spacing: 0;
+        font-size: 14px;
+        color: #04078b;
+    }
+
+    td span.edit-btn {
+        color: #04078b;
+        float: right;
+        padding-right: 5px;
+        font-size: 14px;
+        padding-top: 5px;
+    }
+
+    li span {
+        font-weight: 600;
+    }
+
+    table {
+        margin-bottom: 0 !important;
+    }
+
+    table tr td:first-child {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    table tr td:last-child {
+        color: #02022c;
+    }
+
+    table tr td {
+        border-color: #ddd;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    table tr.b-0 td {
+        border-bottom: 0;
+    }
+
+    .box-profile form .form-group input {
+        border: 1px solid #999;
+        margin-top: 0;
+    }
+
+    .box-profile form .form-group input:focus {
+        border: 1px solid #1CB5E0 !important;
+    }
+
+    .void {
+        display: none !important;
+    }
+
+    .profile-left li {
+        font-size: 15px;
+    }
+
+    .change-password {
+        padding: 1.25rem;
+    }
+
+    .change-password form label {
+        font-size: 14px;
+        padding-right: 0;
+        width: auto;
+    }
+
+    .alert-error {
+        color: red !important;
+    }
+
+    .ip_grp input[type='password']{
+        height: 40px !important;
+        line-height: 40px !important;
+        width: 100%;
+        padding: 3px;
+    }
+
+    .ip_grp input[type='password']:focus{
+        border: 1px solid #2a86bb !important;
+        outline: none !important;
+        border-radius: 4px;
+        box-shadow: 0px 0px 12px rgba(19, 133, 226, 0.507) !important;
+    }
+
+    .helper_head{
+        color: #999;
+    }
+
+    .h-box{
+        display: flex;
+        align-items: center;
+        color: #06662b;
+        
+    }
+
+    .h-box span{
+        font-size: 12px;
+    }
+
+    .h-box .htext{
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .attachment{
+        border: 1px solid #39975e;
+        border-radius: 6px;
+        background: #c6f0d7;
+        display: flex;
+        align-items: center;
+        padding: .5em;
+        line-height: 40px;
+    }
+
+    .attachment a.file{
+        color: #065224;
+        letter-spacing: 0;
+        font-size: 14px;
+    }
+
+    a.file:hover{
+        text-decoration: underline;
+    }
+    
+
+    .attachment .file-icon{
+        color: rgba(184, 7, 7, 0.692);
+        margin-right: 4px;
+        font-size: 18px;
+        padding: 10px;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="main container mt-5">
+    <div class="row mb-5">
+        <div class="col-md-6 col-lg-9 col-sm-12">
+            <div class="card card-body sub-card profile-details">
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <!-- User -->
+                <div class="box-profile">
+                    <h3 class="display-6 text-title">
+                        <span class="blue-bg"><i class="fa fa-unlock-alt f12"></i> Change Password</span>
+                    </h3>
+                    <div class="change-password">
+                        <form method="post" action="/user/changepass/">
+                            {% csrf_token %} 
+                            <div class="row mb-3 spbw">
+                                <label for="id_old_password" class="col-sm-2 col-form-label">Current Password</label>
+                                <div class="col-sm-8 ip_grp">
+                                    {{form.old_password}}
+                                </div>
+                            </div>
+                            <div class="row mb-3 spbw">
+                                <label for="id_new_password1" class="col-sm-2 col-form-label">New Password</label>
+                                <div class="col-sm-8 ip_grp">
+                                    {{form.new_password1}}
+                                </div>
+                            </div>
+                            <div class="row mb-3 spbw">
+                                <label for="id_new_password2" class="col-sm-2 col-form-label">Confirm New Password</label>
+                                <div class="col-sm-8 ip_grp">
+                                    {{form.new_password2}}
+                                </div>
+                            </div>
+
+
+                            <button type="submit" id="submitbtn" class="btn btn-simple w20">Save</button>
+                            <button class="btn btn-sec w20" onclick="history.go(-1);">Back</button>
+
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="s-block">
+                <div class="card-profile">
+                    
+                    <h4 class="helper_head text-center">Important Points</h4>
+                    <ul class="list-group list-group-unbordered profile-left points">
+
+                        <li class="list-group-item noborder h-box">
+                            <span class="fa fa-check px-2"></span> <p class="htext">Use at least 8 characters.</p>
+                        </li>
+
+                        <li class="list-group-item noborder h-box">
+                            <span class="fa fa-check px-2"></span><p class="htext">Special characters like @, $, # must be used.</p>
+                        </li>
+
+                        <li class="list-group-item noborder h-box">
+                            <span class="fa fa-check px-2"></span><p class="htext">Digits from 0-9 may be used.</p>
+                        </li>
+                        <li class="list-group-item noborder h-box">
+                            <span class="fa fa-check px-2"></span><p class="htext">Must contain both uppercase and lowercase characters.</p>
+                        </li>
+                    </ul>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block script %}
+
+
+{% endblock script %}

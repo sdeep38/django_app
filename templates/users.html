@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+Data
+{% endblock title %}
+
+{% block body %}
+<div class="main container mt-3">
+  <div class="row">
+    <div class="col-md-10">
+      <h1 class="text-center">Contact Table</h1><br>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Email Address</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Message</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if users %}
+        {% for user in users %}
+        <tr>
+          <th scope="row">{{user.id}}</th>
+          <td>{{user.email}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.phn}}</td>
+          <td>{{user.desc}}</td>
+          <td><a class="btn btn-success" href="edit/{{user.id}}">Edit</a>&nbsp;<a class="btn btn-danger"
+              style="color:#fff;" href="delete/{{user.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mt-5">
+      <button type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Download
+        Pdf</button>
+    </div>
+  </div>
+</div>
+{% endblock body %}

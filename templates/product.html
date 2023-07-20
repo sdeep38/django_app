@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block body %}
+
+<!--info cards-->
+
+<main>
+    <div class="container-fluid mt-3 mx-0">
+
+        <div class="page-header">
+            <h3 class="large-text">Product</h3>
+        </div>
+
+
+
+        <!--<div class="row">
+
+
+
+        <div class="col-md-4 col-sm-12">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header display-6">Total Orders</div>
+                <div class="card-body">
+                    <h3 class="card-title text-center display-1"><strong>10</strong></h3>
+                </div>
+            </div>
+            
+        </div>
+
+
+
+        <div class="col-md-4 col-sm-12">
+            <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                <div class="card-header display-6">Pending Orders</div>
+                <div class="card-body">
+                    <h3 class="card-title text-center display-1"><strong>10</strong></h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-sm-12">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header display-6">Total Amount</div>
+                <div class="card-body">
+                    <h3 class="card-title text-center display-1"><strong>10</strong></h3>
+                </div>
+            </div>
+        </div>
+        </div>-->
+
+
+        <!--Main content-->
+
+
+        <div class="row mt-3">
+
+            <div class="col-md-9 col-sm-12">
+                <div class="card sub-card mb-3 p-16">
+                    <div class="product">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="image-section text-center">
+                                    <img src="/static/customer/images/harry-potter.jpg" width="322" height="450"
+                                        lt="Empty">
+
+                                </div>
+                                <p class="authors">Authors</p>
+                            </div>
+                            <div class="col-md-6 col-sm-12 px-0">
+                                <div class="text-section">
+                                    <span class="best-seller delivery">Best Seller</span>
+                                    <p class="my-2 product-title">Harry Potter and the Cursed Child-Part 1 and 2- by
+                                        <em>J.K Rowling</em>
+                                    </p>
+                                    <a class="rating delivery">4.3 <i class="fa fa-star"></i></a>
+                                    <!--<span class="fa fa-heart wishlist px-2"></span>-->
+                                    <p class="description my-2">
+                                        <span>Description:</span>
+                                    <p class="desc">
+                                        It was always difficult being Harry Potter and it isn't much easier now that he
+                                        is an overworked employee of the Ministry of Magic, a husband, and father of
+                                        three school-age children.<span id="dots">....</span></p>
+
+                                    <span id="more">
+                                        <p class="desc">While Harry grapples with a past that refuses to stay where it
+                                            belongs, his
+                                            youngest son Albus must struggle with the weight of a family legacy he never
+                                            wanted. As past and present fuse ominously, both father and son learn the
+                                            uncomfortable truth: sometimes, darkness comes from unexpected places.</p>
+                                        <p class="desc">This definitive and final playscript updates the 'special
+                                            rehearsal edition'
+                                            with the conclusive and final dialogue from the play, which has subtly
+                                            changed
+                                            since its rehearsals, as well as a conversation piece between director John
+                                            Tiffany and writer Jack Thorne, who share stories and insights about reading
+                                            playscripts. This edition also includes useful background information
+                                            including
+                                            the Potter family tree and a timeline of events from the Wizarding World
+                                            prior
+                                            to the beginning of Harry Potter and the Cursed Child.</p>
+                                    </span>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="jumbotron">
+                        <h1 class="display-4 p-2 cart-title">Orders</h1>
+                        <table class="table my-4 no-bg">
+                            <thead>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </thead>
+                            <tr>
+                                <td>
+                                    <a href="#"><img src="/static/customer/images/harry-potter.jpg" width="50"
+                                            height=" 60" alt="Harry"></a>
+                                </td>
+                                <td class="py-3">Harry Potter</td>
+                                <td class="text-center py-3">2</td>
+                                <td class="py-3"><span class="fa fa-rupee-sign"></span> 150</td>
+                                <td class="py-3"><a class="btn btn-outline-danger btn-sm" href="#" title="Remove from Cart">
+                                        <span class="fa fa-trash-alt"></span>
+                                    </a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#"><img src="/static/customer/images/book-icon.jpg" width="50"
+                                            height=" 60" alt="Harry"></a>
+                                </td>
+                                <td class="py-3">Harry Potter</td>
+                                <td class="text-center py-3">2</td>
+                                <td class="py-3"><span class="fa fa-rupee-sign"></span> 150</td>
+                                <td class="py-3"><a class="btn btn-outline-danger btn-sm" href="#" title="Remove from Cart">
+                                        <span class="fa fa-trash-alt"></span>
+                                    </a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card-bottom">
+                        <a class="btn btn-outline-success btn-sm new-item" href=""><i class="fa fa-plus"></i> Continue Shopping</a>
+                    </div>-->
+                </div>
+            </div> <!-- / col-md-9 -->
+
+            <div class="col-md-3">
+                <div class="card card-info sub-card order-count product-card">
+                    <div class="order-count-menu mb-3">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <b><span class="fa fa-rupee-sign"></span> 499.00</b>
+                                <a class="pull-right">
+                                    <strike><span class="fa fa-rupee-sign"></span> 300.50</strike>
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="forgot i-text my-0"><em>Inclusive of all taxes</em></p>
+                        <h6 class="stock my-2">In Stock</h6>
+                        <label for="quantity" class="px-0">Quantity</label>
+
+                        <!--<input type="number" class="text-center" id="quantity" name="quantity" min="1" max="3"
+                            value="1">-->
+
+                        <select name="quantity" id="quantity" class="my-2">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <p class="forgot i-text my-0 discount py-2">You save <span class="fa fa-rupee-sign"></span> 991
+                            on
+                            this product</p>
+
+                    </div>
+                    <div class="order-count-bottom text-center">
+                        <a class="btn btn-add-to-cart" href="#">Add to Cart <i class="fa fa-shopping-cart"></i></a>
+                        <a class="btn btn-buy-now" href="#">Buy Now <i class="fa fa-angle-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Order Summary-->
+            <!--
+            <div class="col-md-3">
+                <div class="card card-body side-card summary-card">
+                    <div class="side-card-body">
+                        <h3 class="side-card-top mb-2">Order Summary</h3>
+                        <p class="forgot i-text">For purchases on 29.10.2021 :</p>
+                        <table class="table table-hover summary">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h6 class="pull-left">Subtotal</h6>
+                                    </td>
+                                    <td><span class="fa fa-rupee-sign"></span> 50.00</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="pull-left">GST</h6>
+                                    </td>
+                                    <td><span class="fa fa-rupee-sign"></span> 30.00</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="pull-left">Delivery Charges</h6>
+                                    </td>
+                                    <td><span class="fa fa-rupee-sign"></span> 0.00</td>
+                                </tr><tr>
+                                    <td>
+                                        <h6 class="pull-left">Discount</h6>
+                                    </td>
+                                    <td><span class="fa fa-rupee-sign"></span> 10.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="side-card-bottom">
+                            <table class="table summary">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h6 class="pull-left">Total</h6>
+                                        </td>
+                                        <td class="pull-right text-aqua"><span class="fa fa-rupee-sign"></span> 70.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+
+            <!--
+                        <div class="side-card-logo">
+                            <img src="/static/customer/images/empty-cart.png" width="100%" height="100%" alt="Empty">
+                        </div>
+                    -->
+            <!--<p class="forgot i-text">** Updated last month</p>-->
+            <!--</div>
+                </div>
+            </div>-->
+
+            <!-- / Order Summary-->
+
+        </div> <!-- / row mt-3 -->
+
+
+    </div> <!-- / main container -->
+
+</main>
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+{% endblock body %}
